@@ -433,9 +433,6 @@ class JavaInformations implements Serializable { // NOPMD
 			List<String> dataSourcePropertiesHeader = new ArrayList(Arrays.asList(headerEntry
 					.getValue().keySet().toArray()));
 
-			System.out.println("dataSourcePropertiesHeader="
-					+ Arrays.asList(headerEntry.getValue().keySet().toArray()));
-
 			sb.append("<table class=\"sortable\"  border=\"1\" width=\"100%\" >");
 			sb.append("<tr>");
 			sb.append("<th class=\"sorttable_numeric\">Data Source</th>");

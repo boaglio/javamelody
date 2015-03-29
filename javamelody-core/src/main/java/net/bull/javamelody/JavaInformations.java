@@ -422,23 +422,57 @@ class JavaInformations implements Serializable { // NOPMD
 		final Map<String, Map<String, Object>> dataSourcesProperties = JdbcWrapper
 				.getBasicDataSourceProperties();
 		final StringBuilder sb = new StringBuilder();
+
+		for (final Map.Entry<String, Map<String, Object>> headerEntry : dataSourcesProperties
+				.entrySet()) {
+			final Map<String, Object> dataSourceProperties = headerEntry.getValue();
+			if (dataSourceProperties.isEmpty()) {
+				continue;
+			}
+
+			List<String> dataSourcePropertiesHeader = new ArrayList(Arrays.asList(headerEntry
+					.getValue().keySet().toArray()));
+
+			System.out.println("dataSourcePropertiesHeader="
+					+ Arrays.asList(headerEntry.getValue().keySet().toArray()));
+
+			sb.append("<table class=\"sortable\"  border=\"1\" width=\"100%\" >");
+			sb.append("<tr>");
+			sb.append("<th class=\"sorttable_numeric\">Data Source</th>");
+			for (String tableHeader : dataSourcePropertiesHeader) {
+				sb.append("<th class=\"sorttable_numeric\">");
+				sb.append(" " + tableHeader + " ");
+				sb.append("</th>");
+			}
+			sb.append("</tr>");
+
+			break;
+		}
+
 		for (final Map.Entry<String, Map<String, Object>> entry : dataSourcesProperties.entrySet()) {
 			final Map<String, Object> dataSourceProperties = entry.getValue();
 			if (dataSourceProperties.isEmpty()) {
 				continue;
 			}
-			if (sb.length() > 0) {
-				sb.append('\n');
+			sb.append("<tr>");
+			sb.append("<td nowrap=\"nowrap\">");
+			if (entry.getKey() != null) {
+				sb.append("<b>");
+				sb.append(entry.getKey());
+				sb.append("</b>");
 			}
-			final String name = entry.getKey();
-			if (name != null) {
-				sb.append(name).append(":\n");
-			}
+			sb.append("</th>");
+
 			for (final Map.Entry<String, Object> propertyEntry : dataSourceProperties.entrySet()) {
-				sb.append(propertyEntry.getKey()).append(" = ").append(propertyEntry.getValue())
-						.append('\n');
+				sb.append("<td>");
+				if (propertyEntry.getValue() != null) {
+					sb.append(propertyEntry.getValue());
+				}
+				sb.append("</td>");
 			}
+			sb.append("</tr>");
 		}
+		sb.append("</table>");
 		if (sb.length() == 0) {
 			return null;
 		}

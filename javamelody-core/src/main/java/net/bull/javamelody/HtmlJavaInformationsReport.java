@@ -229,7 +229,7 @@ class HtmlJavaInformationsReport extends HtmlAbstractReport {
 		if (javaInformations.getDataSourceDetails() != null) {
 			writeln("<tr><td valign='top'>#DataSource_jdbc#: </td><td>");
 			// writeDirectly pour ne pas gérer de traductions si la donnée contient '#'
-			writeDirectly(htmlEncodeButNotSpace(javaInformations.getDataSourceDetails()));
+			writeDirectly(javaInformations.getDataSourceDetails());
 			writeDirectly("<a href='http://commons.apache.org/proper/commons-dbcp/api-1.4/index.html'"
 					+ " class='noPrint' target='_blank'>DataSource reference</a>");
 

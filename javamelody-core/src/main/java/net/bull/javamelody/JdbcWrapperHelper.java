@@ -252,6 +252,8 @@ final class JdbcWrapperHelper {
 		// numIdle + numActive est le nombre de connexions ouvertes dans la bdd pour ce serveur à un instant t
 
 		// les propriétés généralement importantes en premier (se méfier aussi de testOnBorrow)
+		properties.put(name, "numActive", tcDataSource.getNumActive());
+		properties.put(name, "numIdle", tcDataSource.getNumIdle());
 		properties.put(name, MAX_ACTIVE_PROPERTY_NAME, tcDataSource.getMaxActive());
 		properties.put(name, "poolPreparedStatements", tcDataSource.isPoolPreparedStatements());
 
@@ -286,6 +288,8 @@ final class JdbcWrapperHelper {
 		// numIdle + numActive est le nombre de connexions ouvertes dans la bdd pour ce serveur à un instant t
 
 		// les propriétés généralement importantes en premier (se méfier aussi de testOnBorrow)
+		properties.put(name, "numActive", dbcpDataSource.getNumActive());
+		properties.put(name, "numIdle", dbcpDataSource.getNumIdle());
 		properties.put(name, MAX_ACTIVE_PROPERTY_NAME, dbcpDataSource.getMaxActive());
 		properties.put(name, "poolPreparedStatements", dbcpDataSource.isPoolPreparedStatements());
 
@@ -320,6 +324,8 @@ final class JdbcWrapperHelper {
 		// numIdle + numActive est le nombre de connexions ouvertes dans la bdd pour ce serveur à un instant t
 
 		// les propriétés généralement importantes en premier (se méfier aussi de testOnBorrow)
+		properties.put(name, "numActive", jdbcDataSource.getNumActive());
+		properties.put(name, "numIdle", jdbcDataSource.getNumIdle());
 		properties.put(name, MAX_ACTIVE_PROPERTY_NAME, jdbcDataSource.getMaxActive());
 
 		properties.put(name, "defaultCatalog", jdbcDataSource.getDefaultCatalog());
